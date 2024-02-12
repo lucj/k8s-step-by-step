@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker
+spec:
+  containers:
+    - image: registry.gitlab.com/voting-application/worker:go
+      name: worker
+      imagePullPolicy: Always
