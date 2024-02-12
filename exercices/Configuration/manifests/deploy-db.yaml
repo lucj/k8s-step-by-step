@@ -23,6 +23,3 @@ spec:
                 secretKeyRef:
                   name: db
                   key: password
-          ports:
-            - containerPort: 5432
-              name: postgres

@@ -6,4 +6,3 @@ spec:
   containers:
     - image: registry.gitlab.com/voting-application/worker:go
       name: worker
-      imagePullPolicy: Always
