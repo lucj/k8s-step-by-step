@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: worker
-  name: worker
+    app: vote
+  name: vote
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: worker
+      app: vote
   template:
     metadata:
       labels:
-        app: worker
+        app: vote
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/worker:latest
-          name: worker
+        - image: {{ .Values.registry }}/vote:{{ .Values.vote.tag }}
+          name: vote

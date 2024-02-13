@@ -6,15 +6,15 @@ Dans votre VM créez le répertoire *votingapp* dans votre home directory. C'est
 
 1. Dans le répertoire *votingapp* créez les fichiers yaml contenant les spécifications des Pods de chaque microservice de l'application VotingApp en respectant les éléments du tableau suivant:
 
-| Microservice | Nom du fichier     | Pod's name | Container's image                                |
-| ---          | ---                | ---        | ---                                              |
-| Vote UI      | pod-voteui.yaml    | vote-ui    | registry.gitlab.com/voting-application/vote-ui   |
-| Vote         | pod-vote.yaml      | vote       | registry.gitlab.com/voting-application/vote      |
-| Redis        | pod-redis.yaml     | redis      | redis:7.0.8-alpine3.17                           |
-| Worker       | pod-worker.yaml    | worker     | registry.gitlab.com/voting-application/worker:go |
+| Microservice | Nom du fichier     | Pod's name | Container's image                                       |
+| ---          | ---                | ---        | ---                                                     |
+| Vote UI      | pod-voteui.yaml    | vote-ui    | registry.gitlab.com/voting-application/vote-ui:latest   |
+| Vote         | pod-vote.yaml      | vote       | registry.gitlab.com/voting-application/vote:latest      |
+| Redis        | pod-redis.yaml     | redis      | redis:7.0.8-alpine3.17                                  |
+| Worker       | pod-worker.yaml    | worker     | registry.gitlab.com/voting-application/worker:latest    |
 | Postgres     | pod-db.yaml        | db         | postgres:15.1-alpine3.17                         |
-| Result       | pod-result.yaml    | result     | registry.gitlab.com/voting-application/result    |
-| Result UI    | pod-resultui.yaml  | result-ui  | registry.gitlab.com/voting-application/result-ui |
+| Result       | pod-result.yaml    | result     | registry.gitlab.com/voting-application/result:latest    |
+| Result UI    | pod-resultui.yaml  | result-ui  | registry.gitlab.com/voting-application/result-ui:latest |
 
 Pour le Pod *db* assurez vous de spécifier une variable d'environment *POSTGRES_PASSWORD* avec la valeur *postgres*
 

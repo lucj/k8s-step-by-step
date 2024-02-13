@@ -15,7 +15,7 @@ spec:
         app: worker
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/worker:go
+        - image: {{ .Values.registry }}/worker:{{ .Values.worker.tag }}
           name: worker
           env:
           - name: POSTGRES_PASSWORD

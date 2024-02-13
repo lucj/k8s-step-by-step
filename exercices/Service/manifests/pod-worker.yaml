@@ -4,5 +4,5 @@ metadata:
   name: worker
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/worker:go
+    - image: registry.gitlab.com/voting-application/worker:latest
       name: worker
