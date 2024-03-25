@@ -5,7 +5,7 @@ Nommez les fichiers de ces Deployments *deploy-XXX.yaml* ou XXX est le nom du mi
 
 2. Lancez l'application définie dans cette spécification
 
-3. Accédez aux interface de vote et de result via les Services de type NodePort
+3. Accédez aux interfaces de vote et de result via les Services de type NodePort
 
 4. Supprimez un Pod, que se passe t'il ?
 
@@ -35,7 +35,7 @@ spec:
         app: vote-ui
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/vote-ui:latest
+        - image: voting/vote-ui:latest
           name: vote-ui
 ```
 
@@ -58,7 +58,7 @@ spec:
         app: vote
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/vote:latest
+        - image: voting/vote:latest
           name: vote
 ```
 
@@ -104,7 +104,7 @@ spec:
         app: worker
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/worker:go
+        - image: voting/worker:latest
           name: worker
 ```
 
@@ -156,7 +156,7 @@ spec:
         app: result
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/result:latest
+        - image: voting/result:latest
           name: result
 ```
 
@@ -179,7 +179,7 @@ spec:
         app: result-ui
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/result-ui:latest
+        - image: voting/result-ui:latest
           name: result-ui
 ```
 
@@ -231,7 +231,7 @@ vote-ui-74849dd9b4-gwcq9     1/1     Running   0          5m15s
 worker-8655654586-mmzgh      1/1     Running   0          4s
 ```
 
-Un Deployment s'assure donc que les Pods sont toujours présent. Si nous avions supprimé un Pod qui n'est pas géré par un Deployment (on parle de *Naked Pod*) aucun Pod n'aurait été lancé automatiquement pour le remplacer.
+Un Deployment s'assure donc que les Pods sont toujours présents. Si nous avions supprimé un Pod qui n'est pas géré par un Deployment (on parle de *Naked Pod*) aucun Pod n'aurait été lancé automatiquement pour le remplacer.
 
 5. Nous supprimons l'application avec la commande suivante
 

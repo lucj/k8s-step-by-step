@@ -15,5 +15,5 @@ spec:
         app: result
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/result:latest
+        - image: voting/result:latest
           name: result

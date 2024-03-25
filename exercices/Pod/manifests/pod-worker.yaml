@@ -4,6 +4,6 @@ metadata:
   name: worker
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/worker:latest
+    - image: voting/worker:latest
       name: worker
       imagePullPolicy: Always

@@ -4,5 +4,5 @@ metadata:
   name: vote-ui
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/vote-ui:latest
+    - image: voting/vote-ui:latest
       name: vote-ui

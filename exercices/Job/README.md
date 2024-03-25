@@ -4,7 +4,7 @@
 
 - nom: seed
 - schedule: "* * * * *"
-- contenant un seul container dont l'image est *registry.gitlab.com/voting-application/tools:seed* et dont la variable d'environnement *NUMBER_OF_VOTES* a la valeur 10
+- contenant un seul container dont l'image est *voting/tools:latest* et dont la variable d'environnement *NUMBER_OF_VOTES* a la valeur 10
 
 2. Lancez l'application et vérifiez, depuis l'interface *resultui*, que 10 nouveaux votes sont créés toutes les minutes
 
@@ -30,7 +30,7 @@ spec:
       template:
         spec:
           containers:
-          - image: registry.gitlab.com/voting-application/tools:seed
+          - image: voting/tools:latest
             name: seed
             env:
             - name: NUMBER_OF_VOTES

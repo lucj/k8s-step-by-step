@@ -131,19 +131,19 @@ Vous allez faire en sorte que les tags des images ne soient plus basés sur *lat
 Tout dabord, ajoutez le contenu suivant dans *values.yaml*:
 
 ```
-registry: registry.gitlab.com/voting-application
+registry: voting
 voteui:
-  tag: v1.0.13
+  tag: v1.0.19
 vote:
-  tag: v1.0.10
+  tag: v1.0.13
 worker:
-  tag: v1.0.7
+  tag: v1.0.15
 result:
-  tag: v1.0.12
+  tag: v1.0.16
 resultui:
-  tag: v1.0.11
+  tag: v1.0.15
 tools:
-  tag: v1.0.1
+  tag: v1.0.4
 ```
 
 Puis modifiez les spécifications des Deploiements *voteui*, *vote*, *worker*, *result* et *resultui* de façon à ce que le nom de l'image soit générée à partir des valeurs des propriétés *registry* et du *tag* correspondant au microservice.
@@ -202,7 +202,7 @@ spec:
       template:
         spec:
           containers:
-          - image: registry.gitlab.com/voting-application/tools:seed
+          - image: voting/tools:{{ .Values.tools.tag }}
             name: seed
             env:
             - name: NUMBER_OF_VOTES
@@ -237,7 +237,7 @@ REVISION: 2
 TEST SUITE: None
 ```
 
-Vous pouvez également voir que les différents Pod ont été recrées pour prendre en compte les modifications faites dans leur spécification:
+Vous pouvez également voir que les différents Pod ont été recréés pour prendre en compte les modifications faites dans leur spécification:
 
 ```
 $ kubectl get po
@@ -283,7 +283,7 @@ helm package --version v0.0.1 .
 Vous pouvez ensuite envoyer ce package sur le DockerHub:
 
 ```
-helm push vote-v0.0.1.tgz oci://registry-1.docker.io/lucj
+helm push vote-v0.0.1.tgz oci://registry-1.docker.io/$DOCKERHUB_USERNAME
 ```
 
 L'application est à présent disponible et prête à être récupérée depuis le Docker Hub

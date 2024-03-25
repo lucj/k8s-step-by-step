@@ -11,7 +11,7 @@ spec:
       template:
         spec:
           containers:
-          - image: registry.gitlab.com/voting-application/tools:seed
+          - image: voting/tools:seed
             name: seed
             env:
             - name: NUMBER_OF_VOTES

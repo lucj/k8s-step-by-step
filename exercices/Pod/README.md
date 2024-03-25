@@ -2,19 +2,20 @@
 
 0. Prérequis - Création d'un répertoire de travail
 
-Dans votre VM créez le répertoire *votingapp* dans votre home directory. C'est dans ce répertoire que vous allez créer les différents fichiers yaml qui seront nécessaire pour déployer l'application VotingApp.
+Depuis un shell dans votre VM créez le répertoire *votingapp*.
 
-1. Dans le répertoire *votingapp* créez les fichiers yaml contenant les spécifications des Pods de chaque microservice de l'application VotingApp en respectant les éléments du tableau suivant:
+1. Dans le répertoire *votingapp* créez les fichiers yaml contenant les spécifications des Pods de chaque microservice de l'application
+ en respectant les éléments du tableau suivant:
 
-| Microservice | Nom du fichier     | Pod's name | Container's image                                       |
-| ---          | ---                | ---        | ---                                                     |
-| Vote UI      | pod-voteui.yaml    | vote-ui    | registry.gitlab.com/voting-application/vote-ui:latest   |
-| Vote         | pod-vote.yaml      | vote       | registry.gitlab.com/voting-application/vote:latest      |
-| Redis        | pod-redis.yaml     | redis      | redis:7.0.8-alpine3.17                                  |
-| Worker       | pod-worker.yaml    | worker     | registry.gitlab.com/voting-application/worker:latest    |
-| Postgres     | pod-db.yaml        | db         | postgres:15.1-alpine3.17                         |
-| Result       | pod-result.yaml    | result     | registry.gitlab.com/voting-application/result:latest    |
-| Result UI    | pod-resultui.yaml  | result-ui  | registry.gitlab.com/voting-application/result-ui:latest |
+| Microservice | Nom du fichier     | Nom du Pod | Image du Container      |
+| ---          | ---                | ---        | ---                     |
+| Vote UI      | pod-voteui.yaml    | vote-ui    | voting/vote-ui:latest   |
+| Vote         | pod-vote.yaml      | vote       | voting/vote:latest      |
+| Redis        | pod-redis.yaml     | redis      | redis:7.0.8-alpine3.17  |
+| Worker       | pod-worker.yaml    | worker     | voting/worker:latest    |
+| Postgres     | pod-db.yaml        | db         | postgres:15.1-alpine3.17|
+| Result       | pod-result.yaml    | result     | voting/result:latest    |
+| Result UI    | pod-resultui.yaml  | result-ui  | voting/result-ui:latest |
 
 Pour le Pod *db* assurez vous de spécifier une variable d'environment *POSTGRES_PASSWORD* avec la valeur *postgres*
 
@@ -37,11 +38,11 @@ metadata:
   name: vote-ui
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/vote-ui:latest
+    - image: voting/vote-ui:latest
       name: vote-ui
 ```
 
-pod-vote.yaml
+pod-vote.yaml:
 ```
 apiVersion: v1
 kind: Pod
@@ -49,7 +50,7 @@ metadata:
   name: vote
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/vote:latest
+    - image: voting/vote:latest
       name: vote
 ```
 
@@ -73,7 +74,7 @@ metadata:
   name: worker
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/worker:go
+    - image: voting/worker:latest
       name: worker
       imagePullPolicy: Always
 ```
@@ -101,7 +102,7 @@ metadata:
   name: result
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/result:latest
+    - image: voting/result:latest
       name: result
 ```
 
@@ -113,7 +114,7 @@ metadata:
   name: result-ui
 spec:
   containers:
-    - image: registry.gitlab.com/voting-application/result-ui:latest
+    - image: voting/result-ui:latest
       name: result-ui
 ```
 
@@ -123,11 +124,11 @@ spec:
 kubectl apply -f votingapp
 ```
 
-Note: lorsque vous précisez un répertoire tous les fichiers yaml de ce répertoire sont créés.
+Note: lorsque vous précisez un répertoire tous les fichiers yaml de ce répertoire sont créés
 
 3. Que constatez-vous ?
 
-Certains Pod ne sont pas en bonne état se santé:
+Certains Pod sont en erreur:
 
 ```
 $ kubectl get po
@@ -141,7 +142,7 @@ vote-ui     0/1     CrashLoopBackOff   1 (3s ago)   25s
 worker      1/1     Running            0            25s
 ```
 
-Si nous prenons l'example du Pod *vote-ui*, ses logs indiquent qu'il ne peut pas se connecter à *vote*
+Si nous prenons l'example du Pod *vote-ui*, les logs indiquent qu'il ne peut pas se connecter à *vote*
 
 ```
 $ kubectl logs vote-ui  
@@ -165,7 +166,7 @@ $ kubectl logs worker
 Waiting for Redis dial tcp: lookup redis on 10.96.0.10:53: no such host
 ```
 
-Les Pods des différents microservices son créés mais ils ne peuvent pas communiquer les uns avec les autres car il faut pour cela créer des Services, c'est ce que nous allons ajouter dans la prochaine étape.
+Les Pods des différents microservices son créés mais ils ne peuvent pas communiquer les uns avec les autres car il faut pour cela créer des Services, c'est ce que nous allons ajouter dans la prochaine étape. Cela nous permettra d'avoir une application fonctionelle.
 
 4. Nous supprimons l'application avec la commande suivante
 

@@ -1,10 +1,10 @@
 ## Exercice
 
-1. Dans un fichier *secret-db.yaml*, ajoutez la spédcification d'un Secret contenant la clé *password* dont la valeur associée est *dbpass*
+1. Dans un fichier *secret-db.yaml*, ajoutez la spécification d'un Secret contenant la clé *password* dont la valeur associée est *dbpass*
 
 2. Modifiez le Deployment *db* de façon à référencer la clé de ce Secret (au lieu de spécifier le mot de passe en clair)
 
-3. Ajoutez la variable d'environnement POSTGRES_PASSWORD dans les containers des Deployment *worker* et *result* et faites en sorte que la valeur référence la clé du Secret créé précédememnt
+3. Ajoutez la variable d'environnement POSTGRES_PASSWORD dans les containers des Deployment *worker* et *result* et faites en sorte que la valeur de cette variable référence la clé du Secret créé précédememnt
 
 4. Lancez l'application définie dans cette spécification et vérifiez que vous avez accès aux interfaces de vote et de result.
 
@@ -13,7 +13,7 @@
 <details>
   <summary markdown="span">Solution</summary>
 
-1. Le mot de passe que nous souhaitons stocké dans le Secret est *dbpass*.
+1. Le mot de passe que nous souhaitons stocker dans le Secret est *dbpass*.
 
 Premièrement, nous encodons ce mot de passe en base64:
 
@@ -67,7 +67,7 @@ spec:
               name: postgres
 ```
 
-3. Nous modifions les Deployment *worker* et *result* (les 2 microservices qui se connectent à *db*) de façon à leur donner le mot de base via le Secret.
+3. Nous modifions les Deployment *worker* et *result* (les 2 microservices qui se connectent à *db*) de façon à ajouter la variable d'environnement POSTGRES_PASSWORD dont la valeur est récupérée dans le Secret *db*.
 
 La nouvelle spécification du Deployment *worker*:
 
@@ -90,7 +90,7 @@ spec:
         app: worker
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/worker:go
+        - image: voting/worker:latest
           name: worker
           env:
           - name: POSTGRES_PASSWORD
@@ -121,7 +121,7 @@ spec:
         app: result
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/result:latest
+        - image: voting/result:latest
           name: result
           env:
             - name: POSTGRES_PASSWORD

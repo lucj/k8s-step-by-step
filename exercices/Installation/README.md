@@ -1,8 +1,8 @@
-K3S est une distribution Kubernetes très légère, vous allez l'utiliser pour mettre en place un cluster de test que vous utiliserez pendant ce cours.
+[k3s](https://k3s.io) est une distribution Kubernetes très légère, vous allez l'utiliser pour mettre en place un cluster de test.
 
 1. Lancez une machine virtuelle sur votre environnement
 
-Je vous conseille d'installer [Multipass](https://multipass.run), un outils très pratique pour la mise en place de VMs en local. Multipass est disponible sur Windows, Linux et MacOS.
+Vous pouvez installer [Multipass](https://multipass.run), un outils très pratique pour la mise en place de VMs en local. Multipass est disponible sur Windows, Linux et MacOS.
 
 Lancez ensuite une VM nommé k3s avec la commande suivante:
 
@@ -10,7 +10,7 @@ Lancez ensuite une VM nommé k3s avec la commande suivante:
 multipass launch -n k3s -c 4 -d 20G -m 4G
 ```
 
-Note: les examples de ce cours se baseront sur l'utilisation de Multipass mais vous pouvez utiliser l'outils de virtualisation que vous avez l'habitude d'utiliser (*VirtualBox*, *kvm*, ...), dans ce cas il faudra simplement adapter certaines des commandes qui suivront.
+Note: les exemples se baseront sur l'utilisation de Multipass mais vous pouvez utiliser l'outils de virtualisation que vous avez l'habitude d'utiliser (*VirtualBox*, *kvm*, ...), dans ce cas il faudra simplement adapter certaines des commandes qui suivront.
 
 2. Lancez un shell ssh dans cette VM et installez k3s
 

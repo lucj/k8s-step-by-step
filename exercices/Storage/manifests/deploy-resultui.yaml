@@ -15,5 +15,5 @@ spec:
         app: result-ui
     spec:
       containers:
-        - image: registry.gitlab.com/voting-application/result-ui:latest
+        - image: voting/result-ui:latest
           name: result-ui

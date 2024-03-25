@@ -22,7 +22,7 @@ Vous devez alors modifier votre */etc/hosts* en ajoutant l'enregistrement suivan
 IP_DE_VOTRE_VM vote.votingapp.com result.votingapp.com
 ```
 
-Note: si vous n'avez pas les droits nécessaire pour modifier votre ficher */etc/hosts*, je vous recommande d'utiliser le service *nip.io* et d'utiliser les noms de domaines *vote.IP_DE_VOTRE_VM.nip.io* / *result.IP_DE_VOTRE_VM.nip.io* au lieu de *vote.votingapp.com* / *result.votingapp.com* dans la définition de votre ressource Ingress.
+Note: si vous n'avez pas les droits nécessaires pour modifier votre ficher */etc/hosts*, vous pouvez utiliser le service *nip.io* et définir les noms de domaines *vote.IP_DE_VOTRE_VM.nip.io* / *result.IP_DE_VOTRE_VM.nip.io* au lieu de *vote.votingapp.com* / *result.votingapp.com* dans la définition de votre ressource Ingress.
 
 2. Lancez l'application et vérifiez que l'interface de vote est disponible sur l'URL *http://vote.votingapp.com* et que l'interface de result est disponible sur l'URL *http://result.votingapp.com* (ou sur *http//vote.IP_DE_VOTRE_VM.nip.io* / *http://result.IP_DE_VOTRE_VM.nip.io si vous utilisez l'approche nip.io)
 

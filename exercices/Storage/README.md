@@ -1,7 +1,6 @@
 ## Exercice
 
-
-Le cluster k3s que vous utilisez pour ce cours contient une *StorageClass* permettant de créer des *PersitentVolume* de manière dynamique lorsqu'un *PersistentVolumeClaim* est créé.
+Le cluster k3s que vous utilisez pour ces exercices contient une *StorageClass* permettant de créer un *PersistentVolume* de manière dynamique lorsqu'un *PersistentVolumeClaim* est créé.
 
 ```
 $ kubectl get sc
@@ -15,14 +14,14 @@ local-path (default)   rancher.io/local-path   Delete          WaitForFirstConsu
 - mode ReadWriteOnce
 - demande de stockage de 100M
 
-Puis, dans la spécification du Deployment *redis*, définissez un volume basé sur ce *PersistentVolumeClaim* précédent et, à l'aide de l'instruction *volumeMounts*, faite en sorte que le *PersistentVolume* qui sera associé soit monté dans le répertoire */data* du container redis. 
+Modifiez ensuite la spécification du Deployment *redis* en ajoutant un volume basé sur ce *PersistentVolumeClaim* et, à l'aide de l'instruction *volumeMounts*, faite en sorte que le *PersistentVolume* associé soit monté dans le répertoire */data* du container redis. 
 
 2. Dans un fichier *pvc-db.yaml* contenant la spécification d'une ressource *PersistentVolumeClaim* avec les caractéristiques suivantes:
 - nom: db
 - mode ReadWriteOnce
 - demande de stockage de 500M
 
-Puis, dans la spécification du Deployment *db*, définissez un volume basé sur le *PersistentVolumeClaim* précédent et, à l'aide de l'instruction *volumeMounts*, faite en sorte que le *PersistentVolume* qui sera associé soit monté dans le répertoire */var/lib/postgresql/data* du container postgres. 
+Modifiez ensuite la spécification du Deployment *db* en ajoutant un volume basé sur ce *PersistentVolumeClaim* et, à l'aide de l'instruction *volumeMounts*, faite en sorte que le *PersistentVolume* associé soit monté dans le répertoire */var/lib/postgresql/data* du container postgres. 
 
 3. Lancez l'application définie dans cette spécification et vérifiez qu'elle fonctionne correctement
 

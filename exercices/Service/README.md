@@ -1,8 +1,8 @@
 ## Exercice
 
-1. Dans le répertoire *votingapp* créez les fichiers yaml contenant les spécifications des Services de chaque microservice de l'application VotingApp en respectant les éléments du tableau suivant:
+1. Dans le répertoire *votingapp* créez les fichiers yaml contenant les spécifications des Services de chaque microservice de l'application en respectant les éléments du tableau suivant:
 
-| Microservice | Nom du fichier        | Service's type   | Service's details                        |
+| Microservice | Nom du fichier        | Type du Service  | Details du Service                       |
 | ---          | ---                   | ---              | ---                                      |
 | Vote UI      | service-voteui.yaml   | NodePort (31000) | nodePort 31000, port: 80, targetPort: 80 |
 | Vote         | service-vote.yaml     | ClusterIP        | nodePort 31000, port: 80, targetPort: 80 |
@@ -11,7 +11,7 @@
 | Result       | service-result.yaml   | ClusterIP        | port: 5000, targetPort: 5000             |
 | Result UI    | service-resultui.yaml | NodePort (31001 )| nodePort 31001, port: 80, targetPort: 80 |
 
-Vous noterez qu'il n'est pas nécessaire d'exposer le Pod *worker* avec un Service can aucun Pod n'a besoin de se connecter au Pod *worker* (c'est le *worker* qui se connecte à *redis* et à *db*)
+Vous noterez qu'il n'est pas nécessaire d'exposer le Pod *worker* avec un Service can aucun Pod n'a besoin de s'y connecter. Au contraire, c'est le Pod *worker* qui se connecte à *redis* et à *db*.
 
 Pour chaque couple Pod/Service, asssurez vous de bien définir un label dans le Pod et le *selector* correspondant dans le Service.
 

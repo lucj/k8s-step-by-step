@@ -1,4 +1,4 @@
-registry: registry.gitlab.com/voting-application
+registry: voting
 voteui:
   tag: v1.0.13
 vote:
